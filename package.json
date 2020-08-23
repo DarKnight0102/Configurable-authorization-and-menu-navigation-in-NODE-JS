@@ -1,0 +1,17 @@
+{
+  "name": "wp",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/DarKnight0102/Role-Auth",
+  "author": "Bill Hu <hubi@berkeley.edu>",
+  "license": "MIT",
+  "scripts": {
+    "install": "yarn --cwd slate && yarn --cwd app",
+    "start": "yarn --cwd app start",
+    "fix": "yarn --cwd app fix"
+  },
+  "dependencies": {
+    "passport-google-oauth": "^2.0.0",
+    "passport-remember-me": "^0.0.1"
+  }
+}
