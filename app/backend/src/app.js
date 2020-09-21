@@ -16,7 +16,7 @@ import Database from './loaders/database';
 
 import ProgramController from './controllers/Program';
 import OrgController from './controllers/Organization';
-import AppSysRoleController from './controllers/AppSysRole';
+import AppRoleController from './controllers/AppRole';
 import AuthController from './controllers/Auth';
 import AppRoleResourceController from './controllers/AppRoleResource/controller';
 import AppResourceController from './controllers/AppResource';
@@ -70,7 +70,7 @@ app.use('/', Container.get(AuthController));
 app.use('/', Container.get(MenuController));
 app.use('/', Container.get(MenuItemController));
 app.use('/', Container.get(ProgramController));
-app.use('/role_manager', Container.get(AppSysRoleController));
+app.use('/role_manager', Container.get(AppRoleController));
 app.use('/org_manager', authorized, Container.get(OrgController));
 app.use('/role_manager', authorized, Container.get(AppRoleResourceController));
 app.use('/role_manager', authorized, Container.get(AppResourceController));

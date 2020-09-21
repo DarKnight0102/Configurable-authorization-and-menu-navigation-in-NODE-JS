@@ -14,9 +14,9 @@ import { makeStyles, useTheme } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 
 import { Button } from '@material-ui/core';
-import { getAppSysRolesRequest } from '../store/thunks/AppSysRole';
+import { getAppRolesRequest } from '../store/thunks/AppRole';
 import { selectFactoryRESTResponseTableValues } from '../store/common/REST/selectors';
-import { selectAppSysRolesStore } from '../store/AppSysRolesStore/selectors';
+import { selectAppRolesStore } from '../store/AppRolesStore/selectors';
 
 const useStyles = makeStyles(theme => ({
   paper: {
@@ -67,9 +67,9 @@ function getStyles(sysRole, sysRoles, theme) {
 
 export default function SignUp({ parentHandleChange, steps, activeStep, handleNext, handleBack }) {
   const dispatch = useDispatch();
-  const { appSysRoles } = useSelector(
+  const { AppRoles } = useSelector(
     state => ({
-      appSysRoles: selectFactoryRESTResponseTableValues(selectAppSysRolesStore)(state),
+      AppRoles: selectFactoryRESTResponseTableValues(selectAppRolesStore)(state),
     }),
     shallowEqual,
   );
@@ -105,7 +105,7 @@ export default function SignUp({ parentHandleChange, steps, activeStep, handleNe
   };
 
   useEffect(() => {
-    dispatch(getAppSysRolesRequest());
+    dispatch(getAppRolesRequest());
   }, [dispatch]);
   return (
     <Container component="main" maxWidth="xs">
@@ -169,8 +169,8 @@ export default function SignUp({ parentHandleChange, steps, activeStep, handleNe
                 )}
                 MenuProps={MenuProps}
               >
-                {appSysRoles.length !== 0 &&
-                  appSysRoles.map(sysRole => (
+                {AppRoles.length !== 0 &&
+                  AppRoles.map(sysRole => (
                     <MenuItem
                       key={sysRole._id}
                       value={`${sysRole.appSys}-${sysRole.role}`}

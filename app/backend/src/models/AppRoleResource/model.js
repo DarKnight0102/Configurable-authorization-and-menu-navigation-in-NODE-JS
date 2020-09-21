@@ -7,7 +7,7 @@ const AppRoleResourceModel = model(
   new Schema(
     {
       appResourceId: { type: ObjectId, ref: 'AppResource' },
-      appSysRoleId: [{ type: ObjectId, ref: 'AppSysRole' }],
+      AppRoleId: [{ type: ObjectId, ref: 'AppRole' }],
     },
     { minimize: false },
   ),

@@ -25,7 +25,7 @@ const User = new Schema(
       {
         appSys: { type: String, default: '' },
         role: { type: String, default: '' },
-        appSysRoleId: { type: ObjectId, ref: 'AppSysRole' },
+        AppRoleId: { type: ObjectId, ref: 'AppRole' },
         org: [
           {
             orgId: { type: String, default: '' },

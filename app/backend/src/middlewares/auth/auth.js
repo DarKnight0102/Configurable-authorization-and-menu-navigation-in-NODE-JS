@@ -8,11 +8,11 @@ export default class Auth {
     this.appResourceService = new AppResourceService();
   }
 
-  async getResources(appSysRoleIds) {
+  async getResources(AppRoleIds) {
     const res = [];
-    for (const appSysRoleId of appSysRoleIds) {
+    for (const AppRoleId of AppRoleIds) {
       const appRoleResource = await this.appRoleResourceService.findAppRoleResource({
-        appSysRoleId,
+        AppRoleId,
       });
       for (const _id of appRoleResource[0].resourceId) {
         const resource = await this.appResourceService.findAppResource({

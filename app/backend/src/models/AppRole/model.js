@@ -1,6 +1,6 @@
 import { Schema, model } from 'mongoose';
 
-const AppSysRole = new Schema(
+const AppRole = new Schema(
   {
     appSys: { type: String },
     role: { type: String },
@@ -9,11 +9,11 @@ const AppSysRole = new Schema(
   { minimize: false },
 );
 
-AppSysRole.pre(/^find/, function (next) {
+AppRole.pre(/^find/, function (next) {
   this.find({ isActive: { $ne: false } });
   next();
 });
 
-const AppSysRoleModel = model('AppSysRole', AppSysRole, 'AppSysRole');
+const AppRoleModel = model('AppRole', AppRole, 'AppRole');
 
-export default AppSysRoleModel;
+export default AppRoleModel;

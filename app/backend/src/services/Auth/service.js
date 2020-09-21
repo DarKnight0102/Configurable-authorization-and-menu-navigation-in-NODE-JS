@@ -5,7 +5,7 @@ import { returnNormalJson, returnErrorJson } from '../../utils';
 import UserRepository from '../../repositories/User';
 import AppRoleResourceRepository from '../../repositories/AppRoleResource';
 import AppResourceRepository from '../../repositories/AppResource';
-import AppSysRoleModel from '../../models/AppSysRole';
+import AppRoleModel from '../../models/AppRole';
 import mongodb from 'mongodb'
 var ObjectID = mongodb.ObjectID
 
@@ -88,13 +88,13 @@ export default class AuthService {
         },
       });
     }
-    var appsysRole = []
+    var AppRole = []
 
     sysRoles.forEach(role => {
-      AppSysRoleModel.findById(role, (err, appsysrole) => {
-        appsysRole.push({
-          role: appsysrole.role,
-          appSysRoleId: appsysrole._id,
+      AppRoleModel.findById(role, (err, AppRole) => {
+        AppRole.push({
+          role: AppRole.role,
+          AppRoleId: AppRole._id,
           _id: new ObjectID()
         })
       })
@@ -107,7 +107,7 @@ export default class AuthService {
         firstName,
         lastName,
         username,
-        sysRole: appsysRole,
+        sysRole: AppRole,
       });
 
       finalUser.setHashedPassword(password);
@@ -128,7 +128,7 @@ export default class AuthService {
       let data = [];
       for (const sysRole of user.sysRole) {
         if (sysRole.role !== 'Business Admin') {
-          const roleResouce = await this.AppRoleResourceRepository.findByAppSysRoleId(sysRole.appSysRoleId);
+          const roleResouce = await this.AppRoleResourceRepository.findByAppRoleId(sysRole.AppRoleId);
           for (const id of roleResouce.resourceId) {
             const resourcesData = await this.AppResourceRepository.findById(id);
             data.push(resourcesData);

@@ -16,9 +16,9 @@ import MandatoryInfo from './MandatoryInfo';
 import ExtraInfo from './ExtraInfo';
 import Review from './Review';
 
-import { getAppSysRolesRequest } from '../store/thunks/AppSysRole';
+import { getAppRolesRequest } from '../store/thunks/AppRole';
 import { selectFactoryRESTResponseTableValues } from '../store/common/REST/selectors';
-import { selectAppSysRolesStore } from '../store/AppSysRolesStore/selectors';
+import { selectAppRolesStore } from '../store/AppRolesStore/selectors';
 
 import AuthController from '../controllers/Auth';
 
@@ -131,9 +131,9 @@ export default function SignUp() {
   const [sysRoles, setSysRoles] = useState([]);
 
   const dispatch = useDispatch();
-  const { appSysRoles } = useSelector(
+  const { AppRoles } = useSelector(
     state => ({
-      appSysRoles: selectFactoryRESTResponseTableValues(selectAppSysRolesStore)(state),
+      AppRoles: selectFactoryRESTResponseTableValues(selectAppRolesStore)(state),
     }),
     shallowEqual,
   );
@@ -176,8 +176,8 @@ export default function SignUp() {
       case 'sysRoles':
         value.forEach(e => {
           const [appSys, role] = e.split('-');
-          const appSysRole = appSysRoles.find(e => e.appSys === appSys && e.role === role);
-          rtn.push(appSysRole);
+          const AppRole = AppRoles.find(e => e.appSys === appSys && e.role === role);
+          rtn.push(AppRole);
         });
         setSysRoles(rtn);
         break;
@@ -187,7 +187,7 @@ export default function SignUp() {
   };
 
   useEffect(() => {
-    dispatch(getAppSysRolesRequest());
+    dispatch(getAppRolesRequest());
   }, [dispatch]);
 
   const processSignUp = () => {

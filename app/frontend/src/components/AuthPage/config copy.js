@@ -145,9 +145,9 @@ const createUserNavigation = () => {
           icon: <GroupWorkIcon />,
         },
         {
-          name: 'AppSysRoles',
+          name: 'AppRoles',
           type: 'menu',
-          url: '/role_manager/AppSysRoles',
+          url: '/role_manager/AppRoles',
           icon: <GroupWorkIcon />,
         },
         {

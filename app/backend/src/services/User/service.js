@@ -1,6 +1,6 @@
 import Container, { Service } from 'typedi';
 import UserRepository from '../../repositories/User';
-import AppSysRoleRepository from '../../repositories/AppSysRole';
+import AppRoleRepository from '../../repositories/AppRole';
 import {
   sendUserVerficationEmail,
   sendAdminVerficationEmail,
@@ -13,7 +13,7 @@ import Error from '../../utils/error';
 export default class UserService {
   constructor() {
     this.UserRepository = Container.get(UserRepository);
-    this.AppSysRoleReposiotry = Container.get(AppSysRoleRepository);
+    this.AppRoleReposiotry = Container.get(AppRoleRepository);
   }
 
   async register(registerData) {
@@ -50,9 +50,9 @@ export default class UserService {
           break;
       }
       promiseQuery.push(
-        this.AppSysRoleReposiotry.findAndCreateAppSysRole(sysRole.appSys, sysRole.role).then(
-          appSysRole => {
-            sysRole.appSysRoleId = appSysRole._id;
+        this.AppRoleReposiotry.findAndCreateAppRole(sysRole.appSys, sysRole.role).then(
+          AppRole => {
+            sysRole.AppRoleId = AppRole._id;
           },
         ),
       );

@@ -42,8 +42,8 @@ export default class AppRoleResourceRepository extends BaseRepository {
     });
   }
 
-  async findByAppSysRoleId(appSysRoleId) {
-    return AppRoleResourceModel.findOne({ appSysRoleId }).then(appRoleResource => {
+  async findByAppRoleId(AppRoleId) {
+    return AppRoleResourceModel.findOne({ AppRoleId }).then(appRoleResource => {
       return new AppRoleResouceEntity(appRoleResource.toObject());
     });
   }
