@@ -88,13 +88,14 @@ export default class AuthService {
         },
       });
     }
-    var AppRole = []
+    var appsysRole = []
 
     sysRoles.forEach(role => {
-      AppRoleModel.findById(role, (err, AppRole) => {
-        AppRole.push({
-          role: AppRole.role,
-          AppRoleId: AppRole._id,
+      AppRoleModel.findById(role, (err, appsysrole) => {
+        appsysRole.push({
+          appSys: appsysrole.appSys,
+          role: appsysrole.role,
+          appSysRoleId: appsysrole._id,
           _id: new ObjectID()
         })
       })
@@ -107,17 +108,23 @@ export default class AuthService {
         firstName,
         lastName,
         username,
-        sysRole: AppRole,
+        title,
+        phoneNumber,
+        ext,
+        sysRole: appsysRole,
+        isActive: true,
       });
+
+      console.log(finalUser);
 
       finalUser.setHashedPassword(password);
 
       return finalUser
-      .save()
-      .then(user => {
-        returnNormalJson(res, { email: user.email });
-      })
-      .catch(err => res.json({ error: err }));
+        .save()
+        .then(user => {
+          returnNormalJson(res, { email: user.email });
+        })
+        .catch(err => res.json({ error: err }));
 
     }, 1000)
 
